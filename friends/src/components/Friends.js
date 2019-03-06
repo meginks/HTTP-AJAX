@@ -23,21 +23,33 @@ class Friends extends Component {
       addFriend = (e) => {
         console.log("friend added!");
         e.preventDefault();
-        const friend = {
-          name: "megan"
+        const newFriend = {
+          name: this.state.name, 
+          age: this.state.age,
+          email: this.state.email, 
+          id: this.state.id
         }
-        console.log(friend);
         
-        // this.setState({
-    
-        // })
-      }
+        this.setState({
+            friends: [this.state.friends, newFriend], 
+            name: '',
+            age: '',
+            email: '', 
+            id: ''
+        });
+      };
+
+      handleChanges = (e) => {
+          this.setState({
+              [e.target.name]: e.target.value
+          });
+      };
     
     render() {
         return (
             <div>
                 <div>{this.state.friends.map((friend) => ( <Friend key={friend.id} friend={friend} /> ))}</div>
-            {/* <NewFriend friends={this.state.friends} addFriend={this.addFriend} /> */}
+            <NewFriend friends={this.state.friends} addFriend={this.addFriend} handleChanges={this.handleChanges} key={this.state.name} />
             </div>
         )
     }
