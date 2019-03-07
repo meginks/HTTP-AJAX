@@ -7,22 +7,22 @@ class NewFriend extends React.Component {
            name: '',
            age: '',
            email: '', 
-           id: ''
        } 
 
        handleChange = e => {
         this.setState({ 
-            name: e.target.value, 
-            age: e.target.value,
-            email: e. target.value
+            [e.target.name]: e.target.value, 
+    
          });
       }
     
       handleSubmit = e => {
         e.preventDefault(); 
         const friend = {
-            name: this.state.name
-          };
+            name: this.state.name, 
+            age: this.state.age,
+            email: this.state.email
+        };
       
           axios.post(`http://localhost:5000/friends/`, { friend })
             .then(res => {
@@ -36,10 +36,9 @@ class NewFriend extends React.Component {
     render() {
     return (
         <form onSubmit={this.handleSubmit}>
-            <input type="text" value={this.name} name="name" onChange={this.handleChange} placeholder="name" /> 
-            <input type="text" value={this.age} name="age" onChange={this.handleChange} placeholder="age" />
-            <input type="text" value={this.email} name="email" onChange={this.handleChange} placeholder="email" />
-            <input type="text" value={this.id} name="id" onChange={this.handleChange} placeholder="id" /> 
+            <input type="text" name="name" onChange={this.handleChange} placeholder="name" /> 
+            <input type="text" name="age" onChange={this.handleChange} placeholder="age" />
+            <input type="text" name="email" onChange={this.handleChange} placeholder="email" />
             <button type="submit">Add friend!</button>
         </form>
     )
