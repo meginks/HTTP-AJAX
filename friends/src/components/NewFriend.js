@@ -1,16 +1,49 @@
 import React from 'react'; 
+import axios from 'axios';
 
 
-const NewFriend = (props) => {
+class NewFriend extends React.Component { 
+       state = {
+           name: '',
+           age: '',
+           email: '', 
+           id: ''
+       } 
+
+       handleChange = e => {
+        this.setState({ 
+            name: e.target.value, 
+            age: e.target.value,
+            email: e. target.value
+         });
+      }
+    
+      handleSubmit = e => {
+        e.preventDefault(); 
+        const friend = {
+            name: this.state.name
+          };
+      
+          axios.post(`http://localhost:5000/friends/`, { friend })
+            .then(res => {
+              console.log(res);
+              console.log(res.data);
+            })
+            .catch(err => console.log(err))
+        };
+
+
+    render() {
     return (
-        <form onSubmit={props.addFriend}>
-            <input type="text" value={props.name} name="name" onChange={props.handleChanges} placeholder="name" /> 
-            <input type="text" value={props.age} name="age" onChange={props.handleChanges} placeholder="age" />
-            <input type="text" value={props.email} name="email" onChange={props.handleChanges} placeholder="email" />
-            <input type="text" value={props.id} name="id" onChange={props.handleChanges} placeholder="id" /> 
+        <form onSubmit={this.handleSubmit}>
+            <input type="text" value={this.name} name="name" onChange={this.handleChange} placeholder="name" /> 
+            <input type="text" value={this.age} name="age" onChange={this.handleChange} placeholder="age" />
+            <input type="text" value={this.email} name="email" onChange={this.handleChange} placeholder="email" />
+            <input type="text" value={this.id} name="id" onChange={this.handleChange} placeholder="id" /> 
             <button type="submit">Add friend!</button>
         </form>
     )
+    }
 }
 
-export default NewFriend;
+export default NewFriend; 
