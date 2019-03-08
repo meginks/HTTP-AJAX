@@ -20,13 +20,24 @@ class Friends extends Component {
             .catch(err => console.log(err));
       }
     
+      addFriend = (e, friend) => {
+        e.preventDefault(); 
+        axios 
+        .post('http://localhost:5000/friends/', friend)
+        .then((res) => {
+          this.setState({
+            friends: res.data
+          })
+        })
+        .catch((err) => console.log(err))
+      }
     
     render() {
         return (
             <div>
               <h1>Friends!</h1>
                 <div>{this.state.friends.map((friend) => ( <Friend key={friend.id} friend={friend} /> ))}</div>
-            <NewFriend friends={this.state.friends} addFriend={this.addFriend} handleChanges={this.handleChanges} key={this.state.name} />
+            <NewFriend friends={this.state.friends} addFriend={this.addFriend} key={this.state.name} />
             </div>
         )
     }
