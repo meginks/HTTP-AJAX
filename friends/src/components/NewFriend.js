@@ -20,7 +20,6 @@ class NewFriend extends React.Component {
       }
     
       handleSubmit = e => {
-        e.preventDefault();
           axios.post(`http://localhost:5000/friends/`, {  name: this.state.name, 
           age: this.state.age,
           email: this.state.email })
