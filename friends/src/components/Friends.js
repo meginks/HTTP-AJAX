@@ -35,7 +35,7 @@ class Friends extends Component {
     render() {
         return (
             <div>
-              <h1>Friends!</h1>
+              <h1 className="heading">Friends!</h1>
                 <div>{this.state.friends.map((friend) => ( <Friend key={friend.id} friend={friend} /> ))}</div>
             <NewFriend friends={this.state.friends} addFriend={this.addFriend} key={this.state.name} />
             </div>

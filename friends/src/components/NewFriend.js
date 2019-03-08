@@ -34,7 +34,8 @@ class NewFriend extends React.Component {
 
     render() {
     return (
-        <form onSubmit={this.handleSubmit} >
+        <form className="add-friend-form" onSubmit={this.handleSubmit} >
+        <h1>Make new friends!</h1>
             <input type="text" value={this.state.name} name="name" onChange={this.handleChange} placeholder="name" /> 
             <input type="text" value={this.state.age} name="age" onChange={this.handleChange} placeholder="age" />
             <input type="text" value={this.state.email} name="email" onChange={this.handleChange} placeholder="email" />
